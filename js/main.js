@@ -25,6 +25,7 @@ window.addEventListener("DOMContentLoaded", function() {
         pisl = getId("pickleslices"),
         on = getId("onions"),
         onsl = getId("onionslices"),
+        le = getId("lettuce")
         no = getId("no")
         
     ;
@@ -87,11 +88,47 @@ window.addEventListener("DOMContentLoaded", function() {
         }
     };
     
+    function pislRange() {
+        if (pi.checked) {
+            pisl.removeAttribute("disabled", "disabled")
+        } else {
+            pisl.setAttribute("disabled", "disabled")
+        }
+    };
+    
+    function onslRange() {
+        if (on.checked) {
+            onsl.removeAttribute("disabled", "disabled")
+        } else {
+            onsl.setAttribute("disabled", "disabled")
+        }
+    };
+    
+    function nothing() {
+        if (no.checked) {
+            tm.setAttribute("disabled", "disabled"),
+            tmsl.setAttribute("disabled", "disabled"),
+            pi.setAttribute("disabled", "disabled"),
+            pisl.setAttribute("disabled", "disabled"),
+            on.setAttribute("disabled", "disabled"),
+            onsl.setAttribute("disabled", "disabled"),
+            le.setAttribute("disabled", "disabled")
+        } else {
+            tm.removeAttribute("disabled", "disabled"),
+            pi.removeAttribute("disabled", "disabled"),
+            on.removeAttribute("disabled", "disabled"),
+            le.removeAttribute("disabled", "disabled")
+        }
+    };
+    
     tu.addEventListener("click", tuslRange)
     ch.addEventListener("click", chslRange)
     pa.addEventListener("click", paslRange)
     bb.addEventListener("click", bbslRange)
     nm.addEventListener("click", noMeat)
     tm.addEventListener("click", tmslRange)
+    pi.addEventListener("click", pislRange)
+    on.addEventListener("click", onslRange)
+    no.addEventListener("click", nothing)
 
 });
