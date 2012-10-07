@@ -9,7 +9,6 @@ window.addEventListener("DOMContentLoaded", function() {
         return element
     };
         //Meat
-        
     var tu = getId("turkey"),
         tusl = getId("turkeyslices"),
         ch = getId("chicken"),
@@ -21,7 +20,6 @@ window.addEventListener("DOMContentLoaded", function() {
         nm = getId("nomeat")
     ;
         //Anything Else
-        
     var tm = getId("tomatoes"),
         tmsl = getId("tomatoslices"),
         pi = getId("pickles"),
@@ -32,7 +30,6 @@ window.addEventListener("DOMContentLoaded", function() {
         no = getId("no")
     ;
         //Cheese
-        
     var ac = getId("americancheese"),
         acsl = getId("americanslices"),
         mjc = getId("montereyjackcheese"),
@@ -42,7 +39,6 @@ window.addEventListener("DOMContentLoaded", function() {
         nc = getId("nocheese")
     ;
         //Condiments
-    
     var mayo = getId("mayo"),
         ke = getId("ketchup"),
         must = getId("mustard"),
@@ -50,7 +46,6 @@ window.addEventListener("DOMContentLoaded", function() {
         noCon = getId("nocondiments")
     ;
         //Delivery
-        
     var del = getId("delivery")
         pu = getId("pickup"),
         h = getId("house"),
@@ -59,6 +54,24 @@ window.addEventListener("DOMContentLoaded", function() {
         zip = getId("zip"),
         notes = getId("notes")
     ;
+    
+    function makeBread(){
+        var form = document.getElementsByTagName("form"),
+            selectLi = getId("select"),
+            makeSelect = document.createElement("select");
+            makeSelect.setAttribute("id", "bread");
+        for (var i=0, j=breadType.length; i<j; i++){
+            var makeOption = document.createElement("option");
+            var optText = breadType[i];
+            makeOption.setAttribute("value", optText);
+            makeOption.innerHTML = optText;
+            makeSelect.appendChild(makeOption);
+        }
+        selectLi.appendChild(makeSelect);
+    };
+
+        // Bread Type Select Field
+    var breadType = ["Hero", "Roll", "Bagel", "Sliced Bread", "Hamburger Buns"];
 
     function tuslRange() {
         if (tu.checked) {
@@ -189,7 +202,7 @@ window.addEventListener("DOMContentLoaded", function() {
             pc.removeAttribute("disabled", "disabled")
         }
     };
-    
+
     function noCondiments() {
         if (noCon.checked) {
             mayo.setAttribute("disabled", "disabled"),
@@ -220,21 +233,22 @@ window.addEventListener("DOMContentLoaded", function() {
         }
     };
     
-    tu.addEventListener("click", tuslRange)
-    ch.addEventListener("click", chslRange)
-    pa.addEventListener("click", paslRange)
-    bb.addEventListener("click", bbslRange)
-    nm.addEventListener("click", noMeat)
-    tm.addEventListener("click", tmslRange)
-    pi.addEventListener("click", pislRange)
-    on.addEventListener("click", onslRange)
-    no.addEventListener("click", nothing)
-    ac.addEventListener("click", acslRange)
-    mjc.addEventListener("click", mjcslRange)
-    pc.addEventListener("click", pcslRange)
-    nc.addEventListener("click", noCheese)
-    noCon.addEventListener("click", noCondiments)
-    pu.addEventListener("click", pickUp)
-    del.addEventListener("click", pickUp)
+    makeBread();
+    tu.addEventListener("click", tuslRange);
+    ch.addEventListener("click", chslRange);
+    pa.addEventListener("click", paslRange);
+    bb.addEventListener("click", bbslRange);
+    nm.addEventListener("click", noMeat);
+    tm.addEventListener("click", tmslRange);
+    pi.addEventListener("click", pislRange);
+    on.addEventListener("click", onslRange);
+    no.addEventListener("click", nothing);
+    ac.addEventListener("click", acslRange);
+    mjc.addEventListener("click", mjcslRange);
+    pc.addEventListener("click", pcslRange);
+    nc.addEventListener("click", noCheese);
+    noCon.addEventListener("click", noCondiments);
+    pu.addEventListener("click", pickUp);
+    del.addEventListener("click", pickUp);
 
 });
