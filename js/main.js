@@ -8,7 +8,8 @@ window.addEventListener("DOMContentLoaded", function() {
         var element = document.getElementById(id)
         return element
     };
-    
+        //Meat
+        
     var tu = getId("turkey"),
         tusl = getId("turkeyslices"),
         ch = getId("chicken"),
@@ -17,17 +18,46 @@ window.addEventListener("DOMContentLoaded", function() {
         pasl = getId("pastramislices"),
         bb = getId("beefbacon"),
         bbsl = getId("beefbaconslices"),
-        nm = getId("nomeat"),
-        nc = getId("nocheese"),
-        tm = getId("tomatoes"),
+        nm = getId("nomeat")
+    ;
+        //Anything Else
+        
+    var tm = getId("tomatoes"),
         tmsl = getId("tomatoslices"),
         pi = getId("pickles"),
         pisl = getId("pickleslices"),
         on = getId("onions"),
         onsl = getId("onionslices"),
-        le = getId("lettuce")
+        le = getId("lettuce"),
         no = getId("no")
+    ;
+        //Cheese
         
+    var ac = getId("americancheese"),
+        acsl = getId("americanslices"),
+        mjc = getId("montereyjackcheese"),
+        mjcsl = getId("montereyjackslices"),
+        pc = getId("parmesancheese"),
+        pcsl = getId("parmesanslices"),
+        nc = getId("nocheese")
+    ;
+        //Condiments
+    
+    var mayo = getId("mayo"),
+        ke = getId("ketchup"),
+        must = getId("mustard"),
+        hs = getId("hotsauce")
+        noCon = getId("nocondiments")
+    ;
+        //Delivery
+        
+    var del = getId("delivery")
+        pu = getId("pickup"),
+        h = getId("house"),
+        st = getId("street"),
+        city = getId("city"),
+        zip = getId("zip"),
+        notes = getId("notes")
     ;
 
     function tuslRange() {
@@ -121,6 +151,75 @@ window.addEventListener("DOMContentLoaded", function() {
         }
     };
     
+    function acslRange() {
+        if (ac.checked) {
+            acsl.removeAttribute("disabled", "disabled")
+        } else {
+            acsl.setAttribute("disabled", "disabled")
+        }
+    };
+    
+    function mjcslRange() {
+        if (mjc.checked) {
+            mjcsl.removeAttribute("disabled", "disabled")
+        } else {
+            mjcsl.setAttribute("disabled", "disabled")
+        }
+    };
+    
+    function pcslRange() {
+        if (pc.checked) {
+            pcsl.removeAttribute("disabled", "disabled")
+        } else {
+            pcsl.setAttribute("disabled", "disabled")
+        }
+    };
+    
+    function noCheese() {
+        if (nc.checked) {
+            ac.setAttribute("disabled", "disabled"),
+            acsl.setAttribute("disabled", "disabled"),
+            mjc.setAttribute("disabled", "disabled"),
+            mjcsl.setAttribute("disabled", "disabled"),
+            pc.setAttribute("disabled", "disabled"),
+            pcsl.setAttribute("disabled", "disabled")
+        } else {
+            ac.removeAttribute("disabled", "disabled"),
+            mjc.removeAttribute("disabled", "disabled"),
+            pc.removeAttribute("disabled", "disabled")
+        }
+    };
+    
+    function noCondiments() {
+        if (noCon.checked) {
+            mayo.setAttribute("disabled", "disabled"),
+            ke.setAttribute("disabled", "disabled"),
+            must.setAttribute("disabled", "disabled"),
+            hs.setAttribute("disabled", "disabled")
+        } else {
+            mayo.removeAttribute("disabled", "disabled"),
+            ke.removeAttribute("disabled", "disabled"),
+            must.removeAttribute("disabled", "disabled"),
+            hs.removeAttribute("disabled", "disabled")
+        }
+    };
+    
+    function pickUp() {
+        if (pu.checked) {
+            h.setAttribute("disabled", "disabled"),
+            st.setAttribute("disabled", "disabled"),
+            city.setAttribute("disabled", "disabled"),
+            zip.setAttribute("disabled", "disabled"),
+            notes.setAttribute("disabled", "disabled")
+        } else if (del.checked){
+            h.removeAttribute("disabled", "disabled"),
+            st.removeAttribute("disabled", "disabled"),
+            city.removeAttribute("disabled", "disabled"),
+            zip.removeAttribute("disabled", "disabled"),
+            notes.removeAttribute("disabled", "disabled")
+        }
+    };
+    
     tu.addEventListener("click", tuslRange)
     ch.addEventListener("click", chslRange)
     pa.addEventListener("click", paslRange)
@@ -130,5 +229,12 @@ window.addEventListener("DOMContentLoaded", function() {
     pi.addEventListener("click", pislRange)
     on.addEventListener("click", onslRange)
     no.addEventListener("click", nothing)
+    ac.addEventListener("click", acslRange)
+    mjc.addEventListener("click", mjcslRange)
+    pc.addEventListener("click", pcslRange)
+    nc.addEventListener("click", noCheese)
+    noCon.addEventListener("click", noCondiments)
+    pu.addEventListener("click", pickUp)
+    del.addEventListener("click", pickUp)
 
 });
