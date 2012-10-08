@@ -8,10 +8,16 @@
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="user-scalable=yes, width=device-width" />
         <title>sulaiMANNY's Sandwiches</title>
+        <link href="css/styles.css" rel="stylesheet">
     </head>
     <body>
         <h1>My Sandwich</h1>
-        <form action="" method="post">
+        <nav>
+            <a href="#" id="clearstoreddata">Clear Stored Data</a>
+            <a href="#" id="displaydata">Display Data</a>
+            <a href="additem.html" id="addsandwich" style="display: none">Add Sandwich</a>
+        </nav>
+        <form action="" method="post" id="sandwichForm">
             <fieldset>
                 <legend>Sandwich Details</legend>
                 <ul>
@@ -25,24 +31,24 @@
                     <li>What do you want in your sandwich?
                         <ul>
                             <li><input type="checkbox" value="Turkey" id="turkey" /><label for="turkey">Turkey</label></li>
-                            <li><label for="turkeyslices">How many slices of Turkey?</label><input type="range" min="1" max="5" value="Turkey Slices" id="turkeyslices" disabled="disabled" /></li>
+                            <!--<li><label for="turkeyslices">How many slices of Turkey?</label><input type="range" min="1" max="5" value="Turkey Slices" id="turkeyslices" disabled="disabled" /></li>-->
                             <li><input type="checkbox" value="Chicken" id="chicken" /><label for="chicken">Chicken</label></li>
-                            <li><label for="chickenslices">How many slices of Chicken?</label><input type="range" min="1" max="5" value="Chicken Slices" id="chickenslices" disabled="disabled" /></li>
+                            <!--<li><label for="chickenslices">How many slices of Chicken?</label><input type="range" min="1" max="5" value="Chicken Slices" id="chickenslices" disabled="disabled" /></li>-->
                             <li><input type="checkbox" value="Pastrami" id="pastrami" /><label for="pastrami">Pastrami</label></li>
-                            <li><label for="pastramislices">How many slices of Pastrami?</label><input type="range" min="1" max="5" value="Pastrami Slices" id="pastramislices" disabled="disabled" /></li>
+                            <!--<li><label for="pastramislices">How many slices of Pastrami?</label><input type="range" min="1" max="5" value="Pastrami Slices" id="pastramislices" disabled="disabled" /></li>-->
                             <li><input type="checkbox" value="Beef Bacon" id="beefbacon" /><label for="beefbacon">Beef Bacon</label></li>
-                            <li><label for="beefbacon">How many slices of Beef Bacon?</label><input type="range" min="1" max="5" value="Beef Bacon" id="beefbaconslices" disabled="disabled" /></li>
+                            <!--<li><label for="beefbacon">How many slices of Beef Bacon?</label><input type="range" min="1" max="5" value="Beef Bacon" id="beefbaconslices" disabled="disabled" /></li>-->
                             <li><input type="checkbox" value="No Meat" id="nomeat" /><label for="nomeat">No Meat</label></li>
                         </ul>
                     </li>
                     <li>Would you like any of the following?
                         <ul>
                             <li><input type="checkbox" value="Tomatoes" id="tomatoes" /><label for="tomatoes">Tomatoes</label></li>
-                            <li><label for="tomatoslices">How many slices of Tomatoes?</label><input type="range" min="1" max="4" value="Tomato Slices" id="tomatoslices" disabled="disabled" /></li>
+                            <!--<li><label for="tomatoslices">How many slices of Tomatoes?</label><input type="range" min="1" max="4" value="Tomato Slices" id="tomatoslices" disabled="disabled" /></li>-->
                             <li><input type="checkbox" value="Pickles" id="pickles" /><label for="pickles">Pickles</label></li>
-                            <li><label for="pickleslices">How many slices of Pickles?</label><input type="range" min="1" max="8" value="Pickle Slices" id="pickleslices" disabled="disabled" /></li>
+                            <!--<li><label for="pickleslices">How many slices of Pickles?</label><input type="range" min="1" max="8" value="Pickle Slices" id="pickleslices" disabled="disabled" /></li>-->
                             <li><input type="checkbox" value="Onions" id="onions" /><label for="onions">Onions</label></li>
-                            <li><label for="onionslices">How many slices of Onions?</label><input type="range" min="1" max="4" value="Onion Slices" id="onionslices" disabled="disabled" /></li>
+                            <!--<li><label for="onionslices">How many slices of Onions?</label><input type="range" min="1" max="4" value="Onion Slices" id="onionslices" disabled="disabled" /></li>-->
                             <li><input type="checkbox" value="Lettuce" id="lettuce" /><label for="lettuce">Lettuce</label></li>
                             <li><input type="checkbox" value="No" id="no" /><label for="no">No</label></li>
                         </ul>
@@ -50,11 +56,11 @@
                     <li>Would you like some cheese?
                         <ul>
                             <li><input type="checkbox" value="American Cheese" id="americancheese" /><label for="americancheese">American Cheese</label></li>
-                            <li><label for="americanslices">How many slices of American Cheese?</label><input type="range" min="1" max="4" value="American Slices" id="americanslices" disabled="disabled" /></li>
+                            <!--<li><label for="americanslices">How many slices of American Cheese?</label><input type="range" min="1" max="4" value="American Slices" id="americanslices" disabled="disabled" /></li>-->
                             <li><input type="checkbox" value="Monterey Jack Cheese" id="montereyjackcheese" /><label for="montereyjackcheese">Monterey Jack Cheese</label></li>
-                            <li><label for="montereyjackslices">How many slices of Monterey Jack cheese?</label><input type="range" min="1" max="4" value="Monterey Jack Slices" id="montereyjackslices" disabled="disabled" /></li>
+                            <!--<li><label for="montereyjackslices">How many slices of Monterey Jack cheese?</label><input type="range" min="1" max="4" value="Monterey Jack Slices" id="montereyjackslices" disabled="disabled" /></li>-->
                             <li><input type="checkbox" value="Parmesan Cheese" id="parmesancheese" /><label for="parmesancheese">Parmesan Cheese</label></li>
-                            <li><label for="parmesanslices">How many slices of Parmesan cheese?</label><input type="range" min="1" max="4" value="Parmesan Slices" id="parmesanslices" disabled="disabled" /></li>
+                            <!--<li><label for="parmesanslices">How many slices of Parmesan cheese?</label><input type="range" min="1" max="4" value="Parmesan Slices" id="parmesanslices" disabled="disabled" /></li>-->
                             <li><input type="checkbox" value="No Cheese" id="nocheese" /><label for="nocheese">No Cheese</label></li>
                         </ul>
                     </li>
@@ -89,10 +95,8 @@
                     <li><label for="notes">Delivery Requests?</label><textarea id="notes"></textarea></li>
                 </ul>
             </fieldset>
-            <input type="submit" value="Save my Sandwich">
+            <input type="submit" id= "save" value="Save my Sandwich">
         </form>
-        <a href="#" id="clearstoreddata">Clear Stored Data</a>
-        <a href="#" id="displaydata">Display Data</a>
         <script src="js/main.js" type="text/javascript"></script>
     </body>
 </html>
