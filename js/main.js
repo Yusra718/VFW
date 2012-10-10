@@ -20,32 +20,32 @@ window.addEventListener("DOMContentLoaded", function() {
 
         //Meat
     var tu = getId("turkey"),
-        //tusl = getId("turkeyslices"),
+        tusl = getId("turkeyslices"),
         ch = getId("chicken"),
-        //chsl = getId("chickenslices"),
+        chsl = getId("chickenslices"),
         pa = getId("pastrami"),
-        //pasl = getId("pastramislices"),
+        pasl = getId("pastramislices"),
         bb = getId("beefbacon"),
-        //bbsl = getId("beefbaconslices"),
+        bbsl = getId("beefbaconslices"),
         nm = getId("nomeat")
     ;
         //Anything Else
     var tm = getId("tomatoes"),
-        //tmsl = getId("tomatoslices"),
+        tmsl = getId("tomatoslices"),
         pi = getId("pickles"),
-        //pisl = getId("pickleslices"),
+        pisl = getId("pickleslices"),
         on = getId("onions"),
-        //onsl = getId("onionslices"),
+        onsl = getId("onionslices"),
         le = getId("lettuce"),
         no = getId("no")
     ;
         //Cheese
     var ac = getId("americancheese"),
-        //acsl = getId("americanslices"),
+        acsl = getId("americanslices"),
         mjc = getId("montereyjackcheese"),
-        //mjcsl = getId("montereyjackslices"),
+        mjcsl = getId("montereyjackslices"),
         pc = getId("parmesancheese"),
-        //pcsl = getId("parmesanslices"),
+        pcsl = getId("parmesanslices"),
         nc = getId("nocheese")
     ;
         //Condiments
@@ -56,7 +56,8 @@ window.addEventListener("DOMContentLoaded", function() {
         noCon = getId("nocondiments")
     ;
         //Delivery
-    var del = getId("delivery")
+    var addressForm = getId("address"),
+        del = getId("delivery"),
         pu = getId("pickup"),
         h = getId("house"),
         st = getId("street"),
@@ -64,13 +65,13 @@ window.addEventListener("DOMContentLoaded", function() {
         zip = getId("zip"),
         notes = getId("notes")
     ;
-        //Define sandwich variables
+        //Define sandwich variables for values
     var bcValue,
         delValue,
-        meat,
-        other,
-        cheese,
-        condiment,
+        meat = [],
+        other = [],
+        cheese = [],
+        condiment = [],
         breadColor
     ;
     
@@ -152,53 +153,55 @@ window.addEventListener("DOMContentLoaded", function() {
     
     function getCon() {
         if(mayo.checked){
-            condiment = mayo.value
+            condiment.push(mayo.value)
         } if (ke.checked){
-            condiment = ke.value
+            condiment.push(ke.value)
         } if (must.checked){
-            condiment = must.value
+            condiment.push(must.value)
         } if (hs.checked){
-            condiment = hs.value
+            condiment.push(hs.value)
         }if (noCon.checked) {
-            condiment = noCon.value
+            condiment.push(noCon.value)
         }
     }
     
     function getCheese() {
         if(ac.checked){
-            cheese = ac.value
+            cheese.push(ac.value)
         } if (mjc.checked){
-            cheese = mjc.value
+            cheese.push(mjc.value)
         } if (pc.checked){
-            cheese = pc.value
+            cheese.push(pc.value)
         } if (nc.checked) {
-            cheese = nc.value
+            cheese.push(nc.value)
         }
     }
     
     function getElse() {
         if(tm.checked){
-            other = tm.value
+            other.push(tm.value)
         } if (pi.checked){
-            other = pi.value
+            other.push(pi.value)
         } if (on.checked){
-            other = on.value
+            other.push(on.value)
         } if (le.checked) {
-            other = le.value
+            other.push(le.value)
         } if (no.checked) {
-            other = no.value
+            other.push(no.value)
         }
     }
     
     function getMeat() {
         if(tu.checked){
-            meat = tu.value
+            meat.push(tu.value)
         } if (ch.checked){
-            meat = ch.value
+            meat.push(ch.value)
         } if (pa.checked){
-            meat = pa.value
+            meat.push(pa.value)
         } if (bb.checked) {
-            meat = bb.value
+            meat.push(bb.value)
+        } if (nm.checked){
+            meat.push(nm.value)
         }
     }
     
@@ -238,48 +241,44 @@ window.addEventListener("DOMContentLoaded", function() {
         // Bread Type Select Field
     var breadType = ["Hero", "Roll", "Bagel", "Sliced Bread", "Hamburger Buns"];
 
-    //function tuslRange() {
-    //    if (tu.checked) {
-    //        tusl.removeAttribute("disabled", "disabled")
-    //    } else {
-    //        tusl.setAttribute("disabled", "disabled")
-    //    }
-    //};
-    //
-    //function chslRange() {
-    //    if (ch.checked) {
-    //        chsl.removeAttribute("disabled", "disabled")
-    //    } else {
-    //        chsl.setAttribute("disabled", "disabled")
-    //    }
-    //};
-    //
-    //function paslRange() {
-    //    if (pa.checked) {
-    //        pasl.removeAttribute("disabled", "disabled")
-    //    } else {
-    //        pasl.setAttribute("disabled", "disabled")
-    //    }
-    //};
-    //
-    //function bbslRange() {
-    //    if (bb.checked) {
-    //        bbsl.removeAttribute("disabled", "disabled")
-    //    } else {
-    //        bbsl.setAttribute("disabled", "disabled")
-    //    }
-    //};
+    function tuslRange() {
+       if (tu.checked) {
+           tusl.style.display = "inline"
+       } else {
+           tusl.style.display = "none"
+       }
+    };
+    
+    function chslRange() {
+       if (ch.checked) {
+           chsl.style.display = "inline"
+       } else {
+           chsl.style.display = "none"
+       }
+    };
+    
+    function paslRange() {
+       if (pa.checked) {
+           pasl.style.display = "inline"
+       } else {
+           pasl.style.display = "none"
+       }
+    };
+    
+    function bbslRange() {
+       if (bb.checked) {
+           bbsl.style.display = "inline"
+       } else {
+           bbsl.style.display = "none"
+       }
+    };
 
     function noMeat() {
         if (nm.checked) {
             tu.setAttribute("disabled", "disabled"),
-            //tusl.setAttribute("disabled", "disabled"),
             ch.setAttribute("disabled", "disabled"),
-            //chsl.setAttribute("disabled", "disabled"),
             pa.setAttribute("disabled", "disabled"),
-            //pasl.setAttribute("disabled", "disabled"),
             bb.setAttribute("disabled", "disabled")
-            //bbsl.setAttribute("disabled", "disabled")
         } else {
             tu.removeAttribute("disabled", "disabled"),
             ch.removeAttribute("disabled", "disabled"),
@@ -288,38 +287,35 @@ window.addEventListener("DOMContentLoaded", function() {
         }
     };
     
-    //function tmslRange() {
-    //    if (tm.checked) {
-    //        tmsl.removeAttribute("disabled", "disabled")
-    //    } else {
-    //        tmsl.setAttribute("disabled", "disabled")
-    //    }
-    //};
-    //
-    //function pislRange() {
-    //    if (pi.checked) {
-    //        pisl.removeAttribute("disabled", "disabled")
-    //    } else {
-    //        pisl.setAttribute("disabled", "disabled")
-    //    }
-    //};
-    //
-    //function onslRange() {
-    //    if (on.checked) {
-    //        onsl.removeAttribute("disabled", "disabled")
-    //    } else {
-    //        onsl.setAttribute("disabled", "disabled")
-    //    }
-    //};
+    function tmslRange() {
+       if (tm.checked) {
+           tmsl.style.display = "inline"
+       } else {
+           tmsl.style.display = "none"
+       }
+    };
+    
+    function pislRange() {
+       if (pi.checked) {
+           pisl.style.display = "inline"
+       } else {
+           pisl.style.display = "none"
+       }
+    };
+    
+    function onslRange() {
+       if (on.checked) {
+           onsl.style.display = "inline"
+       } else {
+           onsl.style.display = "none"
+       }
+    };
     
     function nothing() {
         if (no.checked) {
             tm.setAttribute("disabled", "disabled"),
-            //tmsl.setAttribute("disabled", "disabled"),
             pi.setAttribute("disabled", "disabled"),
-            //pisl.setAttribute("disabled", "disabled"),
             on.setAttribute("disabled", "disabled"),
-            //onsl.setAttribute("disabled", "disabled"),
             le.setAttribute("disabled", "disabled")
         } else {
             tm.removeAttribute("disabled", "disabled"),
@@ -329,38 +325,35 @@ window.addEventListener("DOMContentLoaded", function() {
         }
     };
     
-    //function acslRange() {
-    //    if (ac.checked) {
-    //        acsl.removeAttribute("disabled", "disabled")
-    //    } else {
-    //        acsl.setAttribute("disabled", "disabled")
-    //    }
-    //};
-    //
-    //function mjcslRange() {
-    //    if (mjc.checked) {
-    //        mjcsl.removeAttribute("disabled", "disabled")
-    //    } else {
-    //        mjcsl.setAttribute("disabled", "disabled")
-    //    }
-    //};
-    //
-    //function pcslRange() {
-    //    if (pc.checked) {
-    //        pcsl.removeAttribute("disabled", "disabled")
-    //    } else {
-    //        pcsl.setAttribute("disabled", "disabled")
-    //    }
-    //};
+    function acslRange() {
+       if (ac.checked) {
+           acsl.style.display = "inline"
+       } else {
+           acsl.style.display = "none"
+       }
+    };
+    
+    function mjcslRange() {
+       if (mjc.checked) {
+           mjcsl.style.display = "inline"
+       } else {
+           mjcsl.style.display = "none"
+       }
+    };
+    
+    function pcslRange() {
+       if (pc.checked) {
+           pcsl.style.display = "inline"
+       } else {
+           pcsl.style.display = "none"
+       }
+    };
     
     function noCheese() {
         if (nc.checked) {
             ac.setAttribute("disabled", "disabled"),
-            //acsl.setAttribute("disabled", "disabled"),
             mjc.setAttribute("disabled", "disabled"),
-            //mjcsl.setAttribute("disabled", "disabled"),
             pc.setAttribute("disabled", "disabled")
-            //pcsl.setAttribute("disabled", "disabled")
         } else {
             ac.removeAttribute("disabled", "disabled"),
             mjc.removeAttribute("disabled", "disabled"),
@@ -384,33 +377,35 @@ window.addEventListener("DOMContentLoaded", function() {
     
     function pickUp() {
         if (pu.checked) {
-            h.setAttribute("disabled", "disabled"),
-            st.setAttribute("disabled", "disabled"),
-            city.setAttribute("disabled", "disabled"),
-            zip.setAttribute("disabled", "disabled"),
-            notes.setAttribute("disabled", "disabled")
+            h.style.display = "none",
+            st.style.display = "none",
+            city.style.display = "none",
+            zip.style.display = "none",
+            notes.style.display = "none",
+            addressForm.style.display = "none"
         } else if (del.checked){
-            h.removeAttribute("disabled", "disabled"),
-            st.removeAttribute("disabled", "disabled"),
-            city.removeAttribute("disabled", "disabled"),
-            zip.removeAttribute("disabled", "disabled"),
-            notes.removeAttribute("disabled", "disabled")
+            h.style.display = "inline-block",
+            st.style.display = "inline-block",
+            city.style.display = "inline-block",
+            zip.style.display = "inline-block",
+            notes.style.display = "inline-block",
+            addressForm.style.display = "inline-block"
         }
     };
     
     makeBread();
-    //tu.addEventListener("click", tuslRange);
-    //ch.addEventListener("click", chslRange);
-    //pa.addEventListener("click", paslRange);
-    //bb.addEventListener("click", bbslRange);
+    tu.addEventListener("click", tuslRange);
+    ch.addEventListener("click", chslRange);
+    pa.addEventListener("click", paslRange);
+    bb.addEventListener("click", bbslRange);
     nm.addEventListener("click", noMeat);
-    //tm.addEventListener("click", tmslRange);
-    //pi.addEventListener("click", pislRange);
-    //on.addEventListener("click", onslRange);
+    tm.addEventListener("click", tmslRange);
+    pi.addEventListener("click", pislRange);
+    on.addEventListener("click", onslRange);
     no.addEventListener("click", nothing);
-    //ac.addEventListener("click", acslRange);
-    //mjc.addEventListener("click", mjcslRange);
-    //pc.addEventListener("click", pcslRange);
+    ac.addEventListener("click", acslRange);
+    mjc.addEventListener("click", mjcslRange);
+    pc.addEventListener("click", pcslRange);
     nc.addEventListener("click", noCheese);
     noCon.addEventListener("click", noCondiments);
     pu.addEventListener("click", pickUp);
