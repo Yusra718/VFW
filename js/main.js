@@ -100,18 +100,18 @@ window.addEventListener("DOMContentLoaded", function() {
         selectedBreadColor();
         selectDelivery();
         var sandwich = {};
-            sandwich.bcolor         = ["White or Whole Wheat:", bcValue];
+            sandwich.bcolor         = ["White/Whole Wheat:", bcValue];
             sandwich.breadtype      = ["Type of Bread:", getId("bread").value];
             sandwich.meat           = ["Meat(s):", meat];
             sandwich.anyelse        = ["Other Thing(s):", other];
             sandwich.cheese         = ["Cheese(s):", cheese];
             sandwich.condiments     = ["Condiment(s):", condiment];
-            sandwich.delivery       = ["Prefer to get food by:", delValue];
+            sandwich.delivery       = ["Get food by:", delValue];
             sandwich.house          = ["House Number:", h.value];
             sandwich.street         = ["Street:", st.value];
             sandwich.city           = ["City:", city.value];
             sandwich.zip            = ["Zip Code:", zip.value];
-            sandwich.requests       = ["Delivery Requests:", notes.value];
+            sandwich.requests       = ["Requests/Notes:", notes.value];
         localStorage.setItem(id, JSON.stringify(sandwich));
         alert("Saved!");
     };
@@ -125,6 +125,7 @@ window.addEventListener("DOMContentLoaded", function() {
         document.body.appendChild(makeDiv);
         for (var i=0, j=localStorage.length; i<j;i++) {
             var makeli = document.createElement("li");
+            var links = document.createElement("li");
             makeList.appendChild(makeli);
             var key = localStorage.key(i);
             var value = localStorage.getItem(key);
@@ -136,10 +137,42 @@ window.addEventListener("DOMContentLoaded", function() {
                 makeSubList.appendChild(makeSubli);
                 var optSubText = obj[n][0]+" "+obj[n][1];
                 makeSubli.innerHTML = optSubText;
+                makeSubList.appendChild(links);
             }
+            makeLinks(localStorage.key(i), links);
         }
     };
-    
+
+    function makeLinks(key, links){
+        var edit = document.createElement("a");
+        edit.href = "#";
+        edit.key = key;
+        var editText = "Edit Sandwich";
+        edit.addEventListener("click", editSandwich);
+        edit.innerHTML = editText;
+        links.appendChild(edit);
+        edit.style.display = "inline-block"
+
+        var deletion = document.createElement("a");
+        deletion.href = "#";
+        deletion.key = key;
+        var deleteText = "Delete Sandwich";
+        //deletion.addEventListener("click", deleteSandwich);
+        deletion.innerHTML = deleteText;
+        links.appendChild(deletion);
+        deletion.style.display = "inline-block"
+    }
+
+    // function editSandwich(){
+    //     var value = localStorage.getItem(this.key);
+    //     var sandwich = JSON.parse(value);
+
+    //     toggleDisplay("off");
+
+        
+
+    // }
+
     function clearData() {
         if (localStorage.length === 0) {
             alert("Nothing to clear!")
@@ -150,60 +183,129 @@ window.addEventListener("DOMContentLoaded", function() {
             return false;
         }
     }
-    
-    function getCon() {
+
+    // condiment values
+        // mayo
+    function mayoValue(){
         if(mayo.checked){
             condiment.push(mayo.value)
-        } if (ke.checked){
+        }
+    }
+        // ketchup
+    function ketchupValue(){
+        if (ke.checked){
             condiment.push(ke.value)
-        } if (must.checked){
+        }
+    }
+        // mustard
+    function mustardValue(){
+        if (must.checked){
             condiment.push(must.value)
-        } if (hs.checked){
+        }
+    }
+        // hot sauce
+    function hotSauceValue(){
+        if (hs.checked){
             condiment.push(hs.value)
-        }if (noCon.checked) {
+        }
+    }
+        // no condiment
+    function noCondimentsValue(){
+        if (noCon.checked) {
             condiment.push(noCon.value)
         }
     }
-    
-    function getCheese() {
+
+    // getting cheese values
+        // american cheese
+    function americanValue(){
         if(ac.checked){
             cheese.push(ac.value)
-        } if (mjc.checked){
+        }
+    }
+        // monterey jack cheese
+    function montereyJackValue(){
+        if (mjc.checked){
             cheese.push(mjc.value)
-        } if (pc.checked){
+        }
+    }
+        // parmesan cheese
+    function parmesanValue(){
+        if (pc.checked){
             cheese.push(pc.value)
-        } if (nc.checked) {
+        }
+    }
+        // no cheese
+    function noCheeseValue(){
+        if (nc.checked) {
             cheese.push(nc.value)
         }
     }
     
-    function getElse() {
+    // getting veggie values
+        //tomato
+    function tomatoValue(){
         if(tm.checked){
             other.push(tm.value)
-        } if (pi.checked){
+        }
+    }
+        //pickle
+    function pickleValue(){
+        if (pi.checked){
             other.push(pi.value)
-        } if (on.checked){
+        }
+    }
+        //onion
+    function onionValue() {
+        if (on.checked){
             other.push(on.value)
-        } if (le.checked) {
+        }
+    }
+        //lettuce
+    function lettuceValue(){
+        if (le.checked) {
             other.push(le.value)
-        } if (no.checked) {
+        }
+    }
+        //no thanks
+    function noValue(){
+        if (no.checked) {
             other.push(no.value)
         }
     }
     
-    function getMeat() {
+    //getting meat values
+            //turkey
+    function turkeyValue() {
         if(tu.checked){
             meat.push(tu.value)
-        } if (ch.checked){
+        }
+    }
+            //chicken
+    function chickenValue(){
+        if(ch.checked){
             meat.push(ch.value)
-        } if (pa.checked){
+        }
+    }
+            //pastrami
+    function pastramiValue(){
+        if(pa.checked){
             meat.push(pa.value)
-        } if (bb.checked) {
+        }
+    }
+            //beef bacon
+    function beefbaconValue(){
+        if(bb.checked){
             meat.push(bb.value)
-        } if (nm.checked){
+        }
+    }
+            //no meat
+    function noMeatValue(){
+        if(nm.checked){
             meat.push(nm.value)
         }
     }
+
     
     function selectDelivery(){
         var delivered = document.forms[0].delivery;
@@ -413,24 +515,24 @@ window.addEventListener("DOMContentLoaded", function() {
     displayData.addEventListener("click", getData);
     save.addEventListener("click", storeData);
     clear.addEventListener("click", clearData);
-    tu.addEventListener("click", getMeat);
-    ch.addEventListener("click", getMeat);
-    pa.addEventListener("click", getMeat);
-    bb.addEventListener("click", getMeat);
-    nm.addEventListener("click", getMeat);
-    tm.addEventListener("click", getElse);
-    pi.addEventListener("click", getElse);
-    on.addEventListener("click", getElse);
-    le.addEventListener("click", getElse);
-    no.addEventListener("click", getElse);
-    ac.addEventListener("click", getCheese);
-    mjc.addEventListener("click", getCheese);
-    pc.addEventListener("click", getCheese);
-    nc.addEventListener("click", getCheese);
-    mayo.addEventListener("click", getCon);
-    ke.addEventListener("click", getCon);
-    must.addEventListener("click", getCon);
-    hs.addEventListener("click", getCon);
-    noCon.addEventListener("click", getCon);
+    tu.addEventListener("click", turkeyValue);
+    ch.addEventListener("click", chickenValue);
+    pa.addEventListener("click", pastramiValue);
+    bb.addEventListener("click", beefbaconValue);
+    nm.addEventListener("click", noMeatValue);
+    tm.addEventListener("click", tomatoValue);
+    pi.addEventListener("click", pickleValue);
+    on.addEventListener("click", onionValue);
+    le.addEventListener("click", lettuceValue);
+    no.addEventListener("click", noValue);
+    ac.addEventListener("click", americanValue);
+    mjc.addEventListener("click", montereyJackValue);
+    pc.addEventListener("click", parmesanValue);
+    nc.addEventListener("click", noCheeseValue);
+    mayo.addEventListener("click", mayoValue);
+    ke.addEventListener("click", ketchupValue);
+    must.addEventListener("click", mustardValue);
+    hs.addEventListener("click", hotSauceValue);
+    noCon.addEventListener("click", noCondimentsValue);
     
 });
